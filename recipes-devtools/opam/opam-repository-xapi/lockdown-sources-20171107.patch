@@ -1,0 +1,240 @@
+# Lock down all branch-tracking tarball sources to fixed revisions as of 7th November 2017
+#
+diff --git a/packages/xs-extra/message-switch.1.8.0/url b/packages/xs-extra/message-switch.1.8.0/url
+index ab65eba..8d47bd4 100644
+--- a/packages/xs-extra/message-switch.1.8.0/url
++++ b/packages/xs-extra/message-switch.1.8.0/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/message-switch/archive/master.tar.gz"
++archive: "https://github.com/xapi-project/message-switch/archive/v1.8.0.tar.gz"
+diff --git a/packages/xs-extra/rrd2csv.1.0.2~pin/url b/packages/xs-extra/rrd2csv.1.0.2~pin/url
+index aa06218..1904340 100644
+--- a/packages/xs-extra/rrd2csv.1.0.2~pin/url
++++ b/packages/xs-extra/rrd2csv.1.0.2~pin/url
+@@ -1 +1 @@
+-archive: "https://github.com/xenserver/rrd2csv/archive/master/master.tar.gz"
++archive: "https://github.com/xenserver/rrd2csv/archive/master/3bae4c5114fbec54fa1706c414b8372567333361.tar.gz"
+diff --git a/packages/xs-extra/rrddump.0.2.1~pin/url b/packages/xs-extra/rrddump.0.2.1~pin/url
+index b327093..359f86d 100644
+--- a/packages/xs-extra/rrddump.0.2.1~pin/url
++++ b/packages/xs-extra/rrddump.0.2.1~pin/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/rrddump/archive/master/master.tar.gz"
++archive: "https://github.com/xapi-project/rrddump/archive/master/3dc412c77bbcd9c6443611c3d9cb1e17c9cb778a.tar.gz"
+diff --git a/packages/xs-extra/vhd-tool.0.15.0/url b/packages/xs-extra/vhd-tool.0.15.0/url
+index 548502c..e59f1d8 100644
+--- a/packages/xs-extra/vhd-tool.0.15.0/url
++++ b/packages/xs-extra/vhd-tool.0.15.0/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/vhd-tool/archive/master.tar.gz"
++archive: "https://github.com/xapi-project/vhd-tool/archive/v0.15.0.tar.gz"
+diff --git a/packages/xs-extra/vncproxy.0.0.3/url b/packages/xs-extra/vncproxy.0.0.3/url
+index cf6273a..0f84ec9 100644
+--- a/packages/xs-extra/vncproxy.0.0.3/url
++++ b/packages/xs-extra/vncproxy.0.0.3/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/vncproxy/archive/master/master.tar.gz"
++archive: "https://github.com/xapi-project/vncproxy/archive/0.0.3.tar.gz"
+diff --git a/packages/xs-extra/wsproxy.1.3.1~pin/url b/packages/xs-extra/wsproxy.1.3.1~pin/url
+index bfac7e2..d4a268d 100644
+--- a/packages/xs-extra/wsproxy.1.3.1~pin/url
++++ b/packages/xs-extra/wsproxy.1.3.1~pin/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/wsproxy/archive/master/master.tar.gz"
++archive: "https://github.com/xapi-project/wsproxy/archive/master/d4398d4cade2adb2a3ad8171aae9ca0f3a5e8daf.tar.gz"
+diff --git a/packages/xs-extra/xapi-cli-protocol.1.60.1~pin/url b/packages/xs-extra/xapi-cli-protocol.1.60.1~pin/url
+index bdba35c..c834f58 100644
+--- a/packages/xs-extra/xapi-cli-protocol.1.60.1~pin/url
++++ b/packages/xs-extra/xapi-cli-protocol.1.60.1~pin/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/xen-api/archive/master/master.tar.gz"
++archive: "https://github.com/xapi-project/xen-api/archive/master/167b9f4acbb4908e1799c1ada68ee6480b3390e9.tar.gz"
+diff --git a/packages/xs-extra/xapi-client.1.60.1~pin/url b/packages/xs-extra/xapi-client.1.60.1~pin/url
+index bdba35c..c834f58 100644
+--- a/packages/xs-extra/xapi-client.1.60.1~pin/url
++++ b/packages/xs-extra/xapi-client.1.60.1~pin/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/xen-api/archive/master/master.tar.gz"
++archive: "https://github.com/xapi-project/xen-api/archive/master/167b9f4acbb4908e1799c1ada68ee6480b3390e9.tar.gz"
+diff --git a/packages/xs-extra/xapi-consts.1.60.1~pin/url b/packages/xs-extra/xapi-consts.1.60.1~pin/url
+index bdba35c..c834f58 100644
+--- a/packages/xs-extra/xapi-consts.1.60.1~pin/url
++++ b/packages/xs-extra/xapi-consts.1.60.1~pin/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/xen-api/archive/master/master.tar.gz"
++archive: "https://github.com/xapi-project/xen-api/archive/master/167b9f4acbb4908e1799c1ada68ee6480b3390e9.tar.gz"
+diff --git a/packages/xs-extra/xapi-database.1.60.1~pin/url b/packages/xs-extra/xapi-database.1.60.1~pin/url
+index bdba35c..c834f58 100644
+--- a/packages/xs-extra/xapi-database.1.60.1~pin/url
++++ b/packages/xs-extra/xapi-database.1.60.1~pin/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/xen-api/archive/master/master.tar.gz"
++archive: "https://github.com/xapi-project/xen-api/archive/master/167b9f4acbb4908e1799c1ada68ee6480b3390e9.tar.gz"
+diff --git a/packages/xs-extra/xapi-datamodel.1.60.1~pin/url b/packages/xs-extra/xapi-datamodel.1.60.1~pin/url
+index bdba35c..c834f58 100644
+--- a/packages/xs-extra/xapi-datamodel.1.60.1~pin/url
++++ b/packages/xs-extra/xapi-datamodel.1.60.1~pin/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/xen-api/archive/master/master.tar.gz"
++archive: "https://github.com/xapi-project/xen-api/archive/master/167b9f4acbb4908e1799c1ada68ee6480b3390e9.tar.gz"
+diff --git a/packages/xs-extra/xapi-forkexecd.1.0.1/url b/packages/xs-extra/xapi-forkexecd.1.0.1/url
+index 07eb564..3bb9300 100644
+--- a/packages/xs-extra/xapi-forkexecd.1.0.1/url
++++ b/packages/xs-extra/xapi-forkexecd.1.0.1/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/forkexecd/archive/master.tar.gz"
++archive: "https://github.com/xapi-project/forkexecd/archive/v1.0.1.tar.gz"
+diff --git a/packages/xs-extra/xapi-idl.1.23.0/url b/packages/xs-extra/xapi-idl.1.23.0/url
+index 4b2b3b9..73f2b99 100644
+--- a/packages/xs-extra/xapi-idl.1.23.0/url
++++ b/packages/xs-extra/xapi-idl.1.23.0/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/xcp-idl/archive/master.tar.gz"
++archive: "https://github.com/xapi-project/xcp-idl/archive/v1.23.0.tar.gz"
+diff --git a/packages/xs-extra/xapi-libs-transitional.1.0.2~pin/url b/packages/xs-extra/xapi-libs-transitional.1.0.2~pin/url
+index 18dd724..1013c03 100644
+--- a/packages/xs-extra/xapi-libs-transitional.1.0.2~pin/url
++++ b/packages/xs-extra/xapi-libs-transitional.1.0.2~pin/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/xen-api-libs-transitional/archive/master.tar.gz"
++archive: "https://github.com/xapi-project/xen-api-libs-transitional/archive/0348daba6c0cfd68ae4775e42fd26ecbc0c3c9a3.tar.gz"
+diff --git a/packages/xs-extra/xapi-nbd.0.5.0/url b/packages/xs-extra/xapi-nbd.0.5.0/url
+index 34b2110..208efe4 100644
+--- a/packages/xs-extra/xapi-nbd.0.5.0/url
++++ b/packages/xs-extra/xapi-nbd.0.5.0/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/xapi-nbd/archive/master/master.tar.gz"
++archive: "https://github.com/xapi-project/xapi-nbd/archive/v0.5.0.tar.gz"
+diff --git a/packages/xs-extra/xapi-netdev.1.0.1~pin/url b/packages/xs-extra/xapi-netdev.1.0.1~pin/url
+index c22dc87..00266b6 100644
+--- a/packages/xs-extra/xapi-netdev.1.0.1~pin/url
++++ b/packages/xs-extra/xapi-netdev.1.0.1~pin/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/netdev/archive/master.tar.gz"
++archive: "https://github.com/xapi-project/netdev/archive/fdb4c76a12e1da3d4d7a760d6b1a10be10c41bf1.tar.gz"
+diff --git a/packages/xs-extra/xapi-networkd.0.22.0/url b/packages/xs-extra/xapi-networkd.0.22.0/url
+index ea09257..e784b6e 100644
+--- a/packages/xs-extra/xapi-networkd.0.22.0/url
++++ b/packages/xs-extra/xapi-networkd.0.22.0/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/xcp-networkd/archive/master/master.tar.gz"
++archive: "https://github.com/xapi-project/xcp-networkd/archive/v0.22.0.tar.gz"
+diff --git a/packages/xs-extra/xapi-plugin.0.1.0/url b/packages/xs-extra/xapi-plugin.0.1.0/url
+index 6b7a21e..1e9b359 100644
+--- a/packages/xs-extra/xapi-plugin.0.1.0/url
++++ b/packages/xs-extra/xapi-plugin.0.1.0/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/ocaml-xapi-plugin/archive/master/master.tar.gz"
++archive: "https://github.com/xapi-project/ocaml-xapi-plugin/archive/0.1.0.tar.gz"
+diff --git a/packages/xs-extra/xapi-rrd-transport.1.2.0/url b/packages/xs-extra/xapi-rrd-transport.1.2.0/url
+index 750dc98..efe56ce 100644
+--- a/packages/xs-extra/xapi-rrd-transport.1.2.0/url
++++ b/packages/xs-extra/xapi-rrd-transport.1.2.0/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/rrd-transport/archive/master.tar.gz"
++archive: "https://github.com/xapi-project/rrd-transport/archive/v1.2.0.tar.gz"
+diff --git a/packages/xs-extra/xapi-rrdd-plugin.1.0.2~pin/url b/packages/xs-extra/xapi-rrdd-plugin.1.0.2~pin/url
+index 978c6d0..9224341 100644
+--- a/packages/xs-extra/xapi-rrdd-plugin.1.0.2~pin/url
++++ b/packages/xs-extra/xapi-rrdd-plugin.1.0.2~pin/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/ocaml-rrdd-plugin/archive/master.tar.gz"
++archive: "https://github.com/xapi-project/ocaml-rrdd-plugin/archive/eaccab51a4717d16b9defcdab3e5120fd667c470.tar.gz"
+diff --git a/packages/xs-extra/xapi-rrdd.1.3.0/url b/packages/xs-extra/xapi-rrdd.1.3.0/url
+index 54bab64..8f63c7e 100644
+--- a/packages/xs-extra/xapi-rrdd.1.3.0/url
++++ b/packages/xs-extra/xapi-rrdd.1.3.0/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/xcp-rrdd/archive/master.tar.gz"
++archive: "https://github.com/xapi-project/xcp-rrdd/archive/v1.3.0.tar.gz"
+diff --git a/packages/xs-extra/xapi-squeezed.0.16.0/url b/packages/xs-extra/xapi-squeezed.0.16.0/url
+index 99648c8..32f5b7f 100644
+--- a/packages/xs-extra/xapi-squeezed.0.16.0/url
++++ b/packages/xs-extra/xapi-squeezed.0.16.0/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/squeezed/archive/master/master.tar.gz"
++archive: "https://github.com/xapi-project/squeezed/archive/v0.16.0.tar.gz"
+diff --git a/packages/xs-extra/xapi-storage-cli.0.14.0/url b/packages/xs-extra/xapi-storage-cli.0.14.0/url
+index 11bd4bf..c7811f5 100644
+--- a/packages/xs-extra/xapi-storage-cli.0.14.0/url
++++ b/packages/xs-extra/xapi-storage-cli.0.14.0/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/sm-cli/archive/master/master.tar.gz"
++archive: "https://github.com/xapi-project/sm-cli/archive/v0.14.0.tar.gz"
+diff --git a/packages/xs-extra/xapi-storage-script.0.14.0/url b/packages/xs-extra/xapi-storage-script.0.14.0/url
+index bc58b9c..c94318a 100644
+--- a/packages/xs-extra/xapi-storage-script.0.14.0/url
++++ b/packages/xs-extra/xapi-storage-script.0.14.0/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/xapi-storage-script/archive/master/master.tar.gz"
++archive: "https://github.com/xapi-project/xapi-storage-script/archive/v0.14.0.tar.gz"
+diff --git a/packages/xs-extra/xapi-storage.0.9.1~pin/url b/packages/xs-extra/xapi-storage.0.9.1~pin/url
+index 68ee2be..57050f2 100644
+--- a/packages/xs-extra/xapi-storage.0.9.1~pin/url
++++ b/packages/xs-extra/xapi-storage.0.9.1~pin/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/xapi-storage/archive/master/master.tar.gz"
++archive: "https://github.com/xapi-project/xapi-storage/archive/master/e0dac07b9ac6c3e84f75c6334956f0250375ca59.tar.gz"
+diff --git a/packages/xs-extra/xapi-tapctl.1.0.2~pin/url b/packages/xs-extra/xapi-tapctl.1.0.2~pin/url
+index 70aebb6..fc07290 100644
+--- a/packages/xs-extra/xapi-tapctl.1.0.2~pin/url
++++ b/packages/xs-extra/xapi-tapctl.1.0.2~pin/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/tapctl/archive/master.tar.gz"
++archive: "https://github.com/xapi-project/tapctl/archive/a164d047514ec0f325678431276e0b84d001c015.tar.gz"
+diff --git a/packages/xs-extra/xapi-types.1.60.1~pin/url b/packages/xs-extra/xapi-types.1.60.1~pin/url
+index bdba35c..c834f58 100644
+--- a/packages/xs-extra/xapi-types.1.60.1~pin/url
++++ b/packages/xs-extra/xapi-types.1.60.1~pin/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/xen-api/archive/master/master.tar.gz"
++archive: "https://github.com/xapi-project/xen-api/archive/master/167b9f4acbb4908e1799c1ada68ee6480b3390e9.tar.gz"
+diff --git a/packages/xs-extra/xapi-xenops.1.0.2~pin/url b/packages/xs-extra/xapi-xenops.1.0.2~pin/url
+index 8b7bed2..c2ac694 100644
+--- a/packages/xs-extra/xapi-xenops.1.0.2~pin/url
++++ b/packages/xs-extra/xapi-xenops.1.0.2~pin/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/xenops/archive/master.tar.gz"
++archive: "https://github.com/xapi-project/xenops/archive/dd0ead7d0148b0db0678613ba91dd04c750e3d63.tar.gz"
+diff --git a/packages/xs-extra/xapi-xenopsd.0.37.0/url b/packages/xs-extra/xapi-xenopsd.0.37.0/url
+index 6b7dcb4..91f5e79 100644
+--- a/packages/xs-extra/xapi-xenopsd.0.37.0/url
++++ b/packages/xs-extra/xapi-xenopsd.0.37.0/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/xenopsd/archive/master/master.tar.gz"
++archive: "https://github.com/xapi-project/xenopsd/archive/v0.37.0.tar.gz"
+diff --git a/packages/xs-extra/xapi.1.60.1~pin/url b/packages/xs-extra/xapi.1.60.1~pin/url
+index bdba35c..c834f58 100644
+--- a/packages/xs-extra/xapi.1.60.1~pin/url
++++ b/packages/xs-extra/xapi.1.60.1~pin/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/xen-api/archive/master/master.tar.gz"
++archive: "https://github.com/xapi-project/xen-api/archive/master/167b9f4acbb4908e1799c1ada68ee6480b3390e9.tar.gz"
+diff --git a/packages/xs-extra/xcp.1.23.0/url b/packages/xs-extra/xcp.1.23.0/url
+index 4b2b3b9..73f2b99 100644
+--- a/packages/xs-extra/xcp.1.23.0/url
++++ b/packages/xs-extra/xcp.1.23.0/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/xcp-idl/archive/master.tar.gz"
++archive: "https://github.com/xapi-project/xcp-idl/archive/v1.23.0.tar.gz"
+diff --git a/packages/xs-extra/xe.1.60.1~pin/url b/packages/xs-extra/xe.1.60.1~pin/url
+index bdba35c..c834f58 100644
+--- a/packages/xs-extra/xe.1.60.1~pin/url
++++ b/packages/xs-extra/xe.1.60.1~pin/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/xen-api/archive/master/master.tar.gz"
++archive: "https://github.com/xapi-project/xen-api/archive/master/167b9f4acbb4908e1799c1ada68ee6480b3390e9.tar.gz"
+diff --git a/packages/xs-extra/xen-api-sdk.1.25.0/url b/packages/xs-extra/xen-api-sdk.1.25.0/url
+index 7c1e8bc..bba8aac 100644
+--- a/packages/xs-extra/xen-api-sdk.1.25.0/url
++++ b/packages/xs-extra/xen-api-sdk.1.25.0/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/xen-api-sdk/archive/master.tar.gz"
++archive: "https://github.com/xapi-project/xen-api-sdk/archive/v1.25.0.tar.gz"
+diff --git a/packages/xs-extra/xenctrl.0.10.0/url b/packages/xs-extra/xenctrl.0.10.0/url
+index 141b570..fafed1a 100644
+--- a/packages/xs-extra/xenctrl.0.10.0/url
++++ b/packages/xs-extra/xenctrl.0.10.0/url
+@@ -1 +1 @@
+-archive: "https://github.com/xapi-project/ocaml-xen-lowlevel-libs/archive/master.tar.gz"
++archive: "https://github.com/xapi-project/ocaml-xen-lowlevel-libs/archive/v0.10.0.tar.gz"

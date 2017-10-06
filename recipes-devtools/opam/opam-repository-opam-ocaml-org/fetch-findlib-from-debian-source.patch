@@ -1,0 +1,13 @@
+# The canonical URL for findlib is served from download.camlcity.org
+# which returns HTTP 206 "Partial Content" responses that cause download
+# failures when accessed with the 'wget' version found on Debian Jessie hosts.
+# This will break builds on those hosts.
+# To workaround this, obtain the exact same binary from Debian servers instead.
+diff --git a/packages/ocamlfind/ocamlfind.1.7.3/url b/packages/ocamlfind/ocamlfind.1.7.3/url
+index 3fba382..8e91c0a 100644
+--- a/packages/ocamlfind/ocamlfind.1.7.3/url
++++ b/packages/ocamlfind/ocamlfind.1.7.3/url
+@@ -1,2 +1,2 @@
+-archive: "http://download.camlcity.org/download/findlib-1.7.3.tar.gz"
++archive: "http://http.debian.net/debian/pool/main/f/findlib/findlib_1.7.3.orig.tar.gz"
+ checksum: "7d57451218359f7b7dfc969e3684a6da"

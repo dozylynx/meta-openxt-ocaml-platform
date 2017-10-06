@@ -1,0 +1,12 @@
+#!/bin/sh
+
+OPAM_ROOT_CONFIG="%STAGING_DATADIR_NATIVE%/ocaml/opam-root/config"
+
+cp "${OPAM_ROOT_CONFIG}" "${OPAM_ROOT_CONFIG}.tmp"
+if grep -q '^installed-switches:' "${OPAM_ROOT_CONFIG}" ; then
+    sed -i'' 's,^\(installed-switches:\) \[\?\([^]]*\)\]\?$,\1 \[\2 "'"%SWITCH%"'"\],' "${OPAM_ROOT_CONFIG}.tmp"
+else
+    echo 'installed-switches: ["'"%SWITCH%"'"]' >>"${OPAM_ROOT_CONFIG}.tmp"
+fi
+rm "${OPAM_ROOT_CONFIG}"
+mv "${OPAM_ROOT_CONFIG}.tmp" "${OPAM_ROOT_CONFIG}"

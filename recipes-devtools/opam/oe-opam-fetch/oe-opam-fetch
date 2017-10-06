@@ -1,0 +1,54 @@
+#!/bin/bash
+#
+# A 'fetch' script for Ocaml's Opam package manager
+# to retrieve from the OpenEmbedded download location.
+#
+# Copyright (c) 2017 BAE Systems
+# Author: Christopher Clark
+
+OPTS=`getopt --options Lo: --longoptions write-out:,retry:,retry-delay:,user-agent: -- "$@"`
+
+if [ $? != 0 ] ; then
+    echo 400
+    exit 1
+fi
+
+eval set -- "$OPTS"
+
+# FIXME: parse the write-out argument rather than assume it is "%{http_code}\n"
+
+while true ; do
+    case "$1" in
+        -L) shift;;
+        -o) OUTPUT_FILE="$2"; shift 2;;
+        --write-out)   shift 2;;
+        --retry)       shift 2;;
+        --retry-delay) shift 2;;
+        --user-agent)  shift 2;;
+        --) shift; break;;
+    esac
+done
+
+if [ $# != 1 ] ; then
+    echo "Excess arguments were supplied to the OE opam fetch script -- only one expected: $@">&2
+    echo 400
+    exit 1
+fi
+
+URL="${1}"
+
+DL_FILENAME="$(sed -ne "s,^[^ ]* [^ ]* ${URL} ,,p" <"${OE_OPAMFETCH_DIR}/download-manifest")"
+DLFILE="${OE_OPAMFETCH_DIR}/${DL_FILENAME}"
+
+if [ ! -f "${DLFILE}" ] ; then
+    echo "Error: DLFILE [${DLFILE}] is not a file."
+    echo 400
+    exit 1
+fi
+
+cp -fpPRH "${DLFILE}" "${OUTPUT_FILE}"
+if [ $? != 0 ] ; then
+    echo 404
+    exit 1
+fi
+echo 200

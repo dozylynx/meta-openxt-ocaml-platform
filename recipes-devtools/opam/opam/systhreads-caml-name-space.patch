@@ -1,0 +1,12 @@
+diff --git a/otherlibs/systhreads/Makefile b/otherlibs/systhreads/Makefile
+index 942a7b7..722c664 100644
+--- a/otherlibs/systhreads/Makefile
++++ b/otherlibs/systhreads/Makefile
+@@ -37,6 +37,7 @@ libthreads.a: $(BYTECODE_C_OBJS)
+ 
+ st_stubs_b.o: st_stubs.c st_posix.h
+ 	$(BYTECC) -I../../byterun $(BYTECCCOMPOPTS) $(SHAREDCCCOMPOPTS) \
++	   -DCAML_NAME_SPACE \
+ 	   -c st_stubs.c
+ 	mv st_stubs.o st_stubs_b.o
+ 

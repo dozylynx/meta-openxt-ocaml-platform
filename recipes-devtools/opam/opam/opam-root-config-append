@@ -1,0 +1,4 @@
+pre-build-commands: [
+    ["apply-recipe-patches.sh"]
+    ["patch-ocaml-compiler-for-oe-native.sh" switch name { flags:compiler }]
+]

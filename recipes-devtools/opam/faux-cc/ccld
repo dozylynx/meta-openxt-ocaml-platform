@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "faux-ccld : $CCLD $@" >>/tmp/faux-ccld.log
+exec $CCLD "$@"

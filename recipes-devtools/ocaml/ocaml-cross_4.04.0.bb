@@ -4,19 +4,15 @@ SECTION = "devel"
 LICENSE = "LGPLv2.1"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=4f72f33f302a53dc329f4d3819fe14f9"
 
-PR = "r3"
-
 SRC_URI = "http://caml.inria.fr/pub/distrib/ocaml-4.04/ocaml-4.04.0.tar.gz \
 	   file://config.patch \
 "
 
-inherit xenclient
-#inherit native
 inherit cross
 
 DEPENDS = "virtual/${TARGET_PREFIX}gcc libgcc"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/ocaml-cross:"
+FILESEXTRAPATHS_prepend := "${THISDIR}/ocaml:"
 
 S = "${WORKDIR}/ocaml-${PV}"
 
@@ -25,16 +21,16 @@ RDEPENDS_${PN}-dev = ""
 do_configure() {
 #	Ugly fix to cross-compile. I think we need to use cross-compil patch
 #	for ocaml
-	CFLAGS="${BUILD_CFLAGS} -m32" \
-		linux32 ./configure -no-curses \
+	CFLAGS="${BUILD_CFLAGS}" \
+		./configure -no-curses \
 	        	-bindir ${bindir} \
 			-libdir ${libdir}/ocaml \
 			-mandir ${datadir}/man \
-            -cc "${TARGET_PREFIX}gcc -m32 --sysroot=${STAGING_DIR_TARGET}" -mksharedlib "${TARGET_PREFIX}ld -shared" \
-			-as "${TARGET_PREFIX}as --32" -aspp "${TARGET_PREFIX}gcc -m32 -c"
+            -cc "${TARGET_PREFIX}gcc --sysroot=${STAGING_DIR_TARGET}" -mksharedlib "${TARGET_PREFIX}ld -shared" \
+			-as "${TARGET_PREFIX}as" -aspp "${TARGET_PREFIX}gcc -c"
 
 	sed -i'' -re 's/-lX11//' config/Makefile
-	sed -i'' -re 's/OTHERLIBRARIES=.*/OTHERLIBRARIES=unix str num dynlink bigarray systhreads threads/' config/Makefile
+	sed -i'' -re 's/OTHERLIBRARIES=.*/OTHERLIBRARIES=unix str num dynlink bigarray/' config/Makefile
 	sed -i'' -re 's/NATIVECCCOMPOPTS=(.*)/NATIVECCCOMPOPTS=\1 -fno-stack-protector/' config/Makefile
 	sed -i'' -re 's/BYTECCCOMPOPTS=(.*)/BYTECCCOMPOPTS=\1 -fno-stack-protector/' config/Makefile
 }

@@ -1,0 +1,32 @@
+diff --git a/src/state/opamEnv.ml b/src/state/opamEnv.ml
+index 6c4638b..ed07ba2 100644
+--- a/src/state/opamEnv.ml
++++ b/src/state/opamEnv.ml
+@@ -162,6 +162,9 @@ let add (env: env) (updates: env_update list) =
+   in
+   env @ expand updates
+ 
++let handle_cross_switch =
++  Re.(replace (compile @@ seq [ str "/cx-" ; group ( rep1 (alt [Re.digit ; Re.alpha ; Re.set "-._"] ) ) ; str "/bin" ; eos]) ~f:(fun g -> Re.(replace_string (compile @@ seq [ str "/bin" ; eos]) ~by:"" (Group.get g 0)) ^"/cx/bin"))
++
+ let compute_updates ?(force_path=false) st =
+   (* Todo: put these back into their packages !
+   let perl5 = OpamPackage.Name.of_string "perl5" in
+@@ -180,7 +183,7 @@ let compute_updates ?(force_path=false) st =
+   let path =
+     "PATH",
+     (if force_path then PlusEq else EqPlusEq),
+-    OpamFilename.Dir.to_string bindir,
++    (handle_cross_switch (OpamFilename.Dir.to_string bindir)),
+     Some ("Binary dir for opam switch "^OpamSwitch.to_string st.switch)
+   in
+   let man_path =
+@@ -288,7 +291,7 @@ let switch_path_update ~force_path root switch =
+   [
+     "PATH",
+     (if force_path then PlusEq else EqPlusEq),
+-    OpamFilename.Dir.to_string bindir,
++    (handle_cross_switch (OpamFilename.Dir.to_string bindir)),
+     Some "Current opam switch binary dir"
+   ]
+ 
