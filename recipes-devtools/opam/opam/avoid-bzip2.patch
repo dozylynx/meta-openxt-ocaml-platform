@@ -1,0 +1,17 @@
+# In OE, bzip2-native is ASSUME_PROVIDED but bunzip2 is not always present in the
+# PATH supplied to the install stage of the recipe.
+# Avoid this problem:
+# tar is able to decompress the archive itself when supplied with a flag indicating to do so.
+diff --git a/src_ext/Makefile b/src_ext/Makefile
+index d5b4e10..d28929c 100644
+--- a/src_ext/Makefile
++++ b/src_ext/Makefile
+@@ -111,7 +111,7 @@ endef
+ 
+ %.stamp: %.download
+ 	mkdir -p tmp-$*
+-	cd tmp-$* && $(if $(patsubst %.tar.gz,,$(URL_$*)),bunzip2,gunzip) -c ../$(notdir $(URL_$*)) | tar xf -
++	cd tmp-$* && tar xf$(if $(patsubst %.tar.gz,,$(URL_$*)),j,z) ../$(notdir $(URL_$*))
+ 	rm -rf $*
+ 	@for ii in tmp-$*/*; do if [ -d $${ii} ]; then mv $${ii} $*; fi; done; \
+ 	rm -rf tmp-$*

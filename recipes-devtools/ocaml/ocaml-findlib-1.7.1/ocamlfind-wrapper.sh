@@ -5,14 +5,11 @@
 
 EXECUTABLE_DIR=$(dirname $0)
 
-#[ -z "${OCAMLFIND_CONF}" ] || exec ${EXECUTABLE_DIR}/ocamlfind.binary "$@"
-
-CONF_DEST="${ocamllibdir}"
-CONF_PATH="${OCAML_STDLIBDIR}:${STAGING_LIBDIR_OCAML}"
+[ -z "${OCAMLFIND_CONF}" ] || exec ${EXECUTABLE_DIR}/ocamlfind.binary "$@"
 
 TEMPORARY_OCAMLFIND_CONF="$(mktemp tmp-findlib.conf.XXXXX)"
-echo "destdir=\"${CONF_DEST}\""     >"${TEMPORARY_OCAMLFIND_CONF}"
-echo "path=\"${CONF_PATH}\""       >>"${TEMPORARY_OCAMLFIND_CONF}"
+echo "destdir=\"${OCAMLFIND_DEST}\""     >"${TEMPORARY_OCAMLFIND_CONF}"
+echo "path=\"${OCAMLFIND_PATH}\""       >>"${TEMPORARY_OCAMLFIND_CONF}"
 
 export OCAMLFIND_CONF="${TEMPORARY_OCAMLFIND_CONF}"
 ${EXECUTABLE_DIR}/ocamlfind.binary "$@"

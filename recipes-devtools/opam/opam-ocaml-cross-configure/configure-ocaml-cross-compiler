@@ -1,0 +1,72 @@
+#!/bin/bash
+
+# A replacement configure script for the OCaml compiler
+# to generate config files to build a cross compiler.
+# For OpenEmbedded opam integration.
+#
+# Copyright (c) 2018 BAE Systems
+# Author: Christopher Clark
+
+EXCESS_ARGS=()
+while [[ $# -gt 0 ]] ; do
+    case "$1" in
+        -prefix|--prefix) PREFIX="$2" ; shift 2 ;;
+        -with-debug-runtime|--with-debug-runtime) shift ;;
+
+        *) EXCESS_ARGS+=("$1") ; shift ;;
+    esac
+done
+set -- "${EXCESS_ARGS[@]}"
+
+if [ $# != 0 ] ; then
+    echo "Excess arguments were supplied : $@">&2
+    exit 1
+fi
+if [ -z "${PREFIX}" ] ; then
+    echo "--prefix required parameter is missing.">&2
+    exit 1
+fi
+
+#---
+LIBDIR="${PREFIX}/lib/ocaml"
+
+# Allow compiler-version-specific overrides for each of the generator scripts,
+# so: determine which version we are building.
+VERSION=$(head -1 <VERSION)
+
+#--- m.h
+if which "gen-ocaml-m-dot-h.${VERSION}" ; then
+    GEN_M_DOT_H="gen-ocaml-m-dot-h.${VERSION}"
+else
+    GEN_M_DOT_H="gen-ocaml-m-dot-h"
+fi
+
+${GEN_M_DOT_H} --target-arch "${TRANSLATED_TARGET_ARCH}" -o "config/m.h"
+[ "$?" == 0 ] || exit $?
+
+
+#--- s.h
+if which "gen-ocaml-s-dot-h.${VERSION}" ; then
+    GEN_S_DOT_H="gen-ocaml-s-dot-h.${VERSION}"
+else
+    GEN_S_DOT_H="gen-ocaml-s-dot-h"
+fi
+
+${GEN_S_DOT_H} --target-arch "${TRANSLATED_TARGET_ARCH}" \
+               --ocaml-stdlib-dir "${LIBDIR}" \
+               -o "config/s.h"
+[ "$?" == 0 ] || exit $?
+
+
+#--- Makefile
+if which "modify-ocaml-makefiles.${VERSION}" ; then
+    MODIFY_MAKEFILES="modify-ocaml-makefiles.${VERSION}"
+else
+    MODIFY_MAKEFILES="modify-ocaml-makefiles"
+fi
+
+${MODIFY_MAKEFILES} --prefix "${PREFIX}" \
+                    --libdir "${LIBDIR}" \
+                    --target-arch "${TRANSLATED_TARGET_ARCH}" \
+                    --primary-makefile "Makefile" \
+                    --config-makefile "config/Makefile"

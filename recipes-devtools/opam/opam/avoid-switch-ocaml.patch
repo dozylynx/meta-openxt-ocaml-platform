@@ -1,0 +1,13 @@
+diff --git a/src/client/opamAdminRepoUpgrade.ml b/src/client/opamAdminRepoUpgrade.ml
+index b4deb8c..6a6fb27 100644
+--- a/src/client/opamAdminRepoUpgrade.ml
++++ b/src/client/opamAdminRepoUpgrade.ml
+@@ -319,7 +319,7 @@ let do_upgrade repo_root =
+       O.with_substs [OpamFilename.Base.of_string conf_script_name] |>
+       O.with_build [
+         List.map (fun s -> CString s, None)
+-          [ "ocaml"; "unix.cma"; conf_script_name ],
++          [ "opam-switch-gen-ocaml-config"; conf_script_name ],
+         None
+       ] |>
+       O.with_maintainer [ "platform@lists.ocaml.org" ] |>

@@ -1,0 +1,41 @@
+#!/bin/bash
+CONF_SCRIPT="$1"
+
+# Script to generate an OCaml compiler config for Opam
+# without invoking the OCaml tools in the switch
+# since they may not be compiled for the native environment.
+#
+# Copyright (c) 2017 BAE Systems
+# Written by Christopher Clark
+# FIXME: state MIT License terms
+
+OPAM_VERSION="$(opam --version)"
+
+COMPILER_VERSION="$(sed -ne 's/^.*expected \([^"]*\)"/\1/p' <"${CONF_SCRIPT}")"
+
+[ -n ${SWITCH} ] || exit 1
+
+LD_CONF="${OPAMROOT}/${OPAMSWITCH}/lib/ocaml/ld.conf"
+
+STUBSDIR=""
+while read ONE_LINE
+do 
+    if [[ -z ${STUBSDIR} ]]; then
+        STUBSDIR="${ONE_LINE}"
+    else
+        STUBSDIR="${STUBSDIR}:${ONE_LINE}"
+    fi
+done < "${LD_CONF}"
+
+#-------------
+cat >ocaml.config <<EOF
+opam-version: "${OPAM_VERSION}"
+variables {
+  native: true
+  native-tools: true
+  native-dynlink: true
+  stubsdir: "${STUBSDIR}"
+  preinstalled: false
+  compiler: "${COMPILER_VERSION}"
+}
+EOF

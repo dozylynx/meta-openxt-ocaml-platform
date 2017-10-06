@@ -1,0 +1,98 @@
+#!/bin/bash
+#
+# Copyright (c) 2018 BAE Systems
+# Author: Christopher Clark
+#
+
+EXCESS_ARGS=()
+while [[ $# -gt 0 ]] ; do
+    case "$1" in
+        --target-arch)  TARGET_ARCH="$2"; shift 2;;
+        -o)             OUTPUT_FILE="$2"; shift 2;;
+
+        *) EXCESS_ARGS+=("$1") ; shift ;;
+    esac
+done
+set -- "${EXCESS_ARGS[@]}"
+
+if [ $# != 0 ] ; then
+    echo "Excess arguments were supplied : $@">&2
+    exit 1
+fi
+if [ -z "${TARGET_ARCH}" ] ; then
+    echo "--target-arch required parameter is missing.">&2
+    exit 1
+fi
+if [ -e "${OUTPUT_FILE}" ] ; then
+    echo "Output file already exists; aborting. : ${OUTPUT_FILE}">&2
+    exit 1
+fi
+[ -z "${OUTPUT_FILE}" ] || exec 1>"${OUTPUT_FILE}"
+
+#---
+case $TARGET_ARCH in
+
+# TODO: From 4.05, check others
+x86-64)
+cat <<EOF
+#ifndef __PIC__
+#  define ARCH_CODE32
+#endif
+#define ARCH_SIXTYFOUR
+#define SIZEOF_INT 4
+#define SIZEOF_LONG 8
+#define SIZEOF_PTR 8
+#define SIZEOF_SHORT 2
+#define SIZEOF_LONGLONG 8
+#define INT64_LITERAL(s) s ## LL
+#undef ARCH_BIG_ENDIAN
+#undef ARCH_ALIGN_DOUBLE
+#undef ARCH_ALIGN_INT64
+#define ASM_CFI_SUPPORTED
+#define PROFINFO_WIDTH 0
+#define CAML_WITH_CPLUGINS
+EOF
+;;
+
+# TODO: From 4.04, check others
+i386|i586|i686)
+cat <<EOF
+#undef ARCH_SIXTYFOUR
+#define SIZEOF_INT 4
+#define SIZEOF_LONG 4
+#define SIZEOF_PTR 4
+#define SIZEOF_SHORT 2
+#define SIZEOF_LONGLONG 8
+#define INT64_LITERAL(s) s ## LL
+#undef ARCH_BIG_ENDIAN
+#undef ARCH_ALIGN_DOUBLE
+#undef ARCH_ALIGN_INT64
+#define ASM_CFI_SUPPORTED
+#define PROFINFO_WIDTH 26
+#define CAML_WITH_CPLUGINS
+EOF
+;;
+
+# 32-bit ARM
+# FIXME: verify these by comparing with ARM native configure output
+arm)
+cat <<EOF
+#undef ARCH_SIXTYFOUR
+#define SIZEOF_INT 4
+#define SIZEOF_LONG 4
+#define SIZEOF_PTR 4
+#define SIZEOF_SHORT 2
+#define SIZEOF_LONGLONG 8
+#define INT64_LITERAL(s) s ## LL
+#undef ARCH_BIG_ENDIAN
+#define ARCH_ALIGN_DOUBLE
+#define ARCH_ALIGN_INT64
+#undef NONSTANDARD_DIV_MOD
+#define ASM_CFI_SUPPORTED
+#define PROFINFO_WIDTH 26
+#define CAML_WITH_CPLUGINS
+EOF
+;;
+
+*) exit 1 ;;
+esac

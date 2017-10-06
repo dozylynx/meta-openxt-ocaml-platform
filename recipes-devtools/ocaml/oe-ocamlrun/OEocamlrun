@@ -1,0 +1,31 @@
+#!/bin/sh
+#
+# Tool to locate the specified ocamlrun interpreter and invoke it.
+#
+# This script is run with no arguments to detect its availability.
+# Do not output anything and return success.
+[ "$#" != 0 ] || exit 0
+
+# The last argument to this script is a tag used to identify the OPAM switch
+# ( https://opam.ocaml.org/doc/Usage.html#opam-switch ) requested to use.
+#
+# Example hashbang line for bytecode:
+#--
+##!/usr/bin/awk {for(i=1;i<ARGC;){a=ARGV[i++];gsub(/'/,"'\\''",a);t=t" '"a"'"}exit system("OEocamlrun "t" 4.00.1")}
+#--
+
+pos=0
+num=$#
+for arg do
+    shift
+    pos=`expr $pos + 1`
+    [ "$pos" = "$num" ] && continue
+    set -- "$@" "$arg"
+done
+SWITCH_ID="$arg"
+
+# Setting OCAMLLIB is necessary for the compiler to build and install
+# correctly within a new switch ("opam switch install <switchname>").
+export OCAMLLIB="${OE_OCAMLRUN_ROOT}/${SWITCH_ID}/lib/ocaml"
+
+exec "${OE_OCAMLRUN_ROOT}/${SWITCH_ID}/bin/ocamlrun" "$@"

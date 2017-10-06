@@ -1,0 +1,8 @@
+pre-build-commands: [
+    ["apply-recipe-patches.sh"]
+    ["compiler-hashbang.sh" switch name { flags:compiler }]
+    ["compiler-native-linker-script.sh" switch name { flags:compiler }]
+    ["compiler-mksharedlib-rpath-link.sh" switch name { flags:compiler }]
+    ["compiler-configure-cross.sh" switch name { flags:compiler }]
+    ["compiler-configure-opam32.sh" switch name { flags:compiler }]
+]

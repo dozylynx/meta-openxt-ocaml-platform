@@ -1,0 +1,31 @@
+Index: ocaml-4.05.0/configure
+===================================================================
+--- ocaml-4.05.0.orig/configure
++++ ocaml-4.05.0/configure
+@@ -141,6 +141,8 @@
+         target_type=$2; shift;;
+     -cc*)
+         ccoption="$2"; shift;;
++    -mksharedlib)
++        mksharedliboption="$2"; shift;;
+     -as)
+         asoption="$2"; shift;;
+     -aspp)
+@@ -806,10 +808,16 @@
+     *-*-linux-gnu|*-*-linux|*-*-freebsd[3-9]*|*-*-freebsd[1-9][0-9]*\
+     |*-*-openbsd*|*-*-netbsd*|*-*-dragonfly*|*-*-gnu*|*-*-haiku*)
+       sharedcccompopts="-fPIC"
++      if [[ -z $mksharedliboption ]]; then
++         mksharedlib="$bytecc -shared"
++         mksharedlibrpath="-Wl,-rpath-link,"
++      else
++         mksharedlib="$mksharedliboption"
++         mksharedlibrpath="-rpath "
++      fi
+       mksharedlib="$bytecc -shared"
+       bytecclinkopts="$bytecclinkopts -Wl,-E"
+       byteccrpath="-Wl,-rpath,"
+-      mksharedlibrpath="-Wl,-rpath,"
+       natdynlinkopts="-Wl,-E"
+       shared_libraries_supported=true;;
+   esac

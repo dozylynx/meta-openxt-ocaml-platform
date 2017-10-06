@@ -1,0 +1,38 @@
+#!/bin/sh
+# This script is run with no arguments to detect its availability.
+# Do not output anything and return success.
+[ "$#" != 0 ] || exit 0
+# The last argument to this script is a tag used to identify the OPAM switch
+# ( https://opam.ocaml.org/doc/Usage.html#opam-switch ) requested to use.
+pos=0
+num=$#
+for arg do
+    shift
+    pos=`expr $pos + 1`
+    [ "$pos" = "$num" ] && continue
+    set -- "$@" "$arg"
+done
+SWITCH_ID="$arg"
+
+echo "Running ocamlrun for switch ${SWITCH_ID}">/tmp/oe-ocamlrun-$$.log
+
+echo "Foxtrot Switch is active">>/tmp/oe-ocamlrun-$$.log
+export OCAMLLIB="${datadir}/ocaml/opam-root/${SWITCH_ID}/lib/ocaml"
+RUN="${datadir}/ocaml/opam-root/${SWITCH_ID}/bin/ocamlrun"
+env >>/tmp/oe-ocamlrun-$$.log
+
+# If the switch name is short enough to fit in the hashbang line,
+# SWITCH_ID will just be the name of the switch:
+[ -x "${RUN}" ] && exec "${RUN}" "$@"
+
+echo "run failed">>/tmp/oe-ocamlrun-$$.log
+
+# Otherwise SWITCH_ID will be an encoding of the switch identifier.
+# Scan the installed switches looking for a match.
+# TODO: implement this.
+exit 125
+
+# Example hashbang line for bytecode:
+#--
+##!/usr/bin/awk {for(i=1;i<ARGC;){t=t" "ARGV[i++]}q="ocamlrun";p=q t;exit system(system("OE"q" 2>/dev/null")?p:"OE"p" 4.00.1")}
+#--

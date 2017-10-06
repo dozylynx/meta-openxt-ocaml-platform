@@ -1,0 +1,16 @@
+diff --git a/src/client/opamAdminRepoUpgrade.ml b/src/client/opamAdminRepoUpgrade.ml
+index bf2b610..e72ed9c 100644
+--- a/src/client/opamAdminRepoUpgrade.ml
++++ b/src/client/opamAdminRepoUpgrade.ml
+@@ -112,7 +112,10 @@ let all_base_packages =
+ 
+ let cache_file : string list list OpamFile.t =
+   OpamFile.make @@
+-  OpamFilename.of_string "~/.cache/opam-compilers-to-packages/url-hashes"
++  match (OpamStd.Env.getopt "OPAM_COMPILER_HASHES") with
++  | None -> OpamFilename.of_string "~/.cache/opam-compilers-to-packages/url-hashes"
++  | Some p -> OpamFilename.of_string p
++
+ 
+ let do_upgrade repo_root =
+   let repo = OpamRepositoryBackend.local repo_root in
